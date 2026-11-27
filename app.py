@@ -135,17 +135,17 @@ def index():
     *{{box-sizing:border-box}}
     html,body{{width:100%; margin:0; padding:0; overflow-x:hidden}}
     body{{font-family:Arial; background:#f2f2f2; padding:0; margin:0}}
-    .box{{background:white; width:100%; margin:0; padding:0 0 12px 0; border-radius:0}}
-    input,select{{width:100%; padding:14px; margin:6px 0; border:1px solid #ccc; border-radius:6px; font-size:16px; display:block}}
+    .box{{background:white; width:100%; margin:0 auto; padding:0 0 8px 0; border-radius:0; max-width:700px}}
+    input,select{{width:100%; padding:9px 12px; margin:4px 0; border:1px solid #ccc; border-radius:6px; font-size:15px; display:block}}
     button{{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}}
     .tabela-wrap{{overflow-x:auto; width:100%; -webkit-overflow-scrolling:touch}}
-    .tabela-wrap table{{width:650px; min-width:650px; border-collapse:collapse; margin-top:15px; font-size:13px}}
-    th,td{{padding:8px; border-bottom:1px solid #ddd; text-align:center; white-space:nowrap}}
+    .tabela-wrap table{{width:650px; min-width:650px; border-collapse:collapse; margin-top:10px; font-size:13px}}
+    th,td{{padding:6px; border-bottom:1px solid #ddd; text-align:center; white-space:nowrap}}
     .badge{{padding:5px 10px; border-radius:20px; font-weight:bold; font-size:12px; white-space:nowrap}}
     </style>
     <div class="box">
-    <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; height:auto; display:block; margin:0; padding:0; border-radius:0;">
-    <form action="/cadastrar" method="post" style="padding:12px 12px 0 12px;">
+    <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; max-height:110px; object-fit:contain; object-position:center; background:white; display:block; margin:0; padding:0; border-radius:0;">
+    <form action="/cadastrar" method="post" style="padding:8px 12px 0 12px;">
         <select name="unidade" id="unidadeSelect" onchange="atualizarSerial()" required>
             <option value="">Selecione a Unidade</option>
             <option>Unidade 1 - Colégio</option>
@@ -158,7 +158,7 @@ def index():
         </select>
         <input name="nome" placeholder="Nome do aluno" required>
         <input name="turma" placeholder="Turma ex: 901" required>
-        <label style="font-size:13px; font-weight:bold;">N do Chromebook / Serial - Clique para abrir a aba:</label>
+        <label style="font-size:12px; font-weight:bold;">N do Chromebook / Serial - Clique para abrir a aba:</label>
         <select name="chromebook" id="chromebookSelect" required>
             <option value="">Primeiro selecione a Unidade</option>
         </select>
@@ -167,7 +167,7 @@ def index():
             <option style="background:green; color:white;">Devolvido</option>
             <option style="background:yellow; color:black;">Manutenção</option>
         </select>
-        <button style="background:#00aaff;color:white; width:100%; padding:14px; font-weight:bold; font-size:16px; margin-top:8px;">Cadastrar</button>
+        <button style="background:#00aaff;color:white; width:100%; padding:10px; font-weight:bold; font-size:16px; margin-top:5px;">Cadastrar</button>
     </form>
     <script>
     var opcoesUnidade1 = `<option value="">Clique aqui e escolha o Serial - Unidade 1</option>{opcoes1}`;
