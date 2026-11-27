@@ -93,6 +93,8 @@ def index():
     for r in registros:
         if r['status'] == 'Em uso' and hora_atual >= 17:
             r['status'] = 'Não entregou no dia'
+    # ABA COM TODOS OS SERIALS PARA O CAMPO N DO CHROMEBOOK
+    opcoes_serial = "".join([f"<option value='{a} - {c}'>{a} - {c} - {b} - {d}</option>" for a,b,c,d in SERIAL_UNIDADE_1])
     linhas_unidade1 = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td><td>{d}</td></tr>" for a,b,c,d in SERIAL_UNIDADE_1])
     html = f"""
     <style>
@@ -103,8 +105,6 @@ def index():
     table{{width:100%; border-collapse:collapse; margin-top:15px}}
     th,td{{padding:8px; border-bottom:1px solid #ddd; text-align:center}}
     .badge{{padding:5px 12px; border-radius:20px; font-weight:bold; font-size:13px}}
-    details{{margin:15px 0; border:1px solid #ddd; border-radius:8px; padding:10px}}
-    summary{{font-weight:bold; cursor:pointer; padding:10px; background:#e11d48; color:white; border-radius:6px}}
     </style>
     <div class="box">
    <div style="display:flex; align-items:center; justify-content:space-between;">
@@ -112,8 +112,9 @@ def index():
 <img src="/foto" style="width:130px; border-radius:10px;">
 </div>
     <a href="/inventario" style="display:block;text-align:center;background:#111;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">📋 VER INVENTÁRIO DE NOTEBOOKS</a>
+    <a href="/unidade1" style="display:block;text-align:center;background:#e11d48;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</a>
     <form action="/cadastrar" method="post">
-        <select name="unidade" id="unidadeSelect" onchange="mostrarSerial()" required>
+        <select name="unidade" required>
             <option value="">Selecione a Unidade</option>
             <option>Colégio Unidade 1</option>
             <option>Creche Vila da Penha Unidade 2</option>
@@ -124,17 +125,13 @@ def index():
             <option>Valqueire Unidade 6</option>
             <option>Valqueire Unidade 7</option>
         </select>
-        <div id="boxSerialUnidade1" style="display:none; background:#fff5f5; border:2px solid #e11d48; border-radius:8px; padding:12px; margin:10px 0;">
-            <b style="color:#e11d48;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</b>
-            <input id="buscaSerial" oninput="filtrarSerial()" placeholder="Buscar serial, patrimônio..." style="margin-top:8px;">
-            <div style="max-height:300px; overflow:auto;">
-            <table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th><th>Sala</th></tr></thead><tbody id="tabelaSerial">{linhas_unidade1}</tbody></table>
-            </div>
-            <p style="font-size:13px;">Total Unidade 1: <b>59</b> | Falta: 01.12.0007</p>
-        </div>
         <input name="nome" placeholder="Nome do aluno" required>
         <input name="turma" placeholder="Turma ex: 901" required>
-        <input name="chromebook" placeholder="N do Chromebook ex: CB-01" required>
+        <label style="font-size:13px; font-weight:bold;">N do Chromebook / Serial - Clique para abrir a aba:</label>
+        <select name="chromebook" required>
+            <option value="">👇 Clique aqui e escolha o Serial</option>
+            {opcoes_serial}
+        </select>
         <select name="status" id="selectStatus" onchange="pintarSelect()" style="background:red; color:white; font-weight:bold;">
             <option style="background:red; color:white;">Em uso</option>
             <option style="background:green; color:white;">Devolvido</option>
@@ -143,18 +140,6 @@ def index():
         <button style="background:#00aaff;color:white; width:100%; padding:12px; font-weight:bold;">Cadastrar</button>
     </form>
     <script>
-    function mostrarSerial(){{
-        var u = document.getElementById('unidadeSelect').value;
-        var box = document.getElementById('boxSerialUnidade1');
-        if(u.includes('Unidade 1')){{ box.style.display='block'; }}
-        else{{ box.style.display='none'; }}
-    }}
-    function filtrarSerial(){{
-        var q = document.getElementById('buscaSerial').value.toLowerCase();
-        document.querySelectorAll('#tabelaSerial tr').forEach(r=>{{
-            r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
-        }});
-    }}
     function pintarSelect(){{
         var s = document.getElementById('selectStatus');
         if(s.value == 'Em uso'){{ s.style.background='red'; s.style.color='white'; }}
@@ -163,7 +148,7 @@ def index():
     }}
     </script>
     <table>
-    <tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook</th><th>Status</th><th>Acao</th></tr>
+    <tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook / Serial</th><th>Status</th><th>Acao</th></tr>
     """
     for r in registros:
         estilo = cor_status(r['status'])
