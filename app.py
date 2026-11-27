@@ -134,20 +134,17 @@ def index():
     <style>
     *{{box-sizing:border-box}}
     html,body{{width:100%; margin:0; padding:0; overflow-x:hidden}}
-    body{{font-family:Arial; background:#f2f2f2; padding:0}}
-    .box{{background:white; max-width:100%; width:100%; margin:0 auto; padding:0 0 12px 0; border-radius:0}}
+    body{{font-family:Arial; background:#f2f2f2; padding:0; margin:0}}
+    .box{{background:white; width:100%; margin:0; padding:0 0 12px 0; border-radius:0}}
     input,select{{width:100%; padding:14px; margin:6px 0; border:1px solid #ccc; border-radius:6px; font-size:16px; display:block}}
     button{{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}}
     .tabela-wrap{{overflow-x:auto; width:100%; -webkit-overflow-scrolling:touch}}
     .tabela-wrap table{{width:650px; min-width:650px; border-collapse:collapse; margin-top:15px; font-size:13px}}
     th,td{{padding:8px; border-bottom:1px solid #ddd; text-align:center; white-space:nowrap}}
     .badge{{padding:5px 10px; border-radius:20px; font-weight:bold; font-size:12px; white-space:nowrap}}
-    img{{max-width:100%; height:auto; display:block}}
     </style>
     <div class="box">
-    <div style="width:100%; text-align:center; background:white; padding:0; margin:0;">
-        <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; max-width:100%; height:170px; object-fit:cover; display:block; margin:0; border-radius:0;">
-    </div>
+    <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; height:auto; display:block; margin:0; padding:0; border-radius:0;">
     <form action="/cadastrar" method="post" style="padding:12px 12px 0 12px;">
         <select name="unidade" id="unidadeSelect" onchange="atualizarSerial()" required>
             <option value="">Selecione a Unidade</option>
