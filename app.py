@@ -130,21 +130,26 @@ def index():
     opcoes1 = "".join([f"<option value='{a} - {c}'>{a} - {c} - {b}</option>" for a,b,c in SERIAL_UNIDADE_1])
     opcoes3 = "".join([f"<option value='{a} - {c}'>{a} - {c} - {b}</option>" for a,b,c in SERIAL_UNIDADE_3])
     html = f"""
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <style>
-    body{{font-family:Arial; background:#f2f2f2; padding:20px}}
-    .box{{background:white; max-width:1000px; margin:auto; padding:20px; border-radius:10px}}
-    input,select{{width:100%; padding:10px; margin:5px 0; box-sizing:border-box; border:1px solid #ccc; border-radius:6px}}
+    *{{box-sizing:border-box}}
+    html,body{{width:100%; margin:0; padding:0; overflow-x:hidden}}
+    body{{font-family:Arial; background:#f2f2f2; padding:8px}}
+    .box{{background:white; max-width:100%; width:100%; margin:auto; padding:12px; border-radius:10px}}
+    input,select{{width:100%; padding:14px; margin:6px 0; border:1px solid #ccc; border-radius:6px; font-size:16px; display:block}}
     button{{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}}
-    table{{width:100%; border-collapse:collapse; margin-top:15px}}
-    th,td{{padding:8px; border-bottom:1px solid #ddd; text-align:center}}
-    .badge{{padding:5px 12px; border-radius:20px; font-weight:bold; font-size:13px}}
+    .tabela-wrap{{overflow-x:auto; width:100%; -webkit-overflow-scrolling:touch}}
+    .tabela-wrap table{{width:650px; min-width:650px; border-collapse:collapse; margin-top:15px; font-size:13px}}
+    th,td{{padding:8px; border-bottom:1px solid #ddd; text-align:center; white-space:nowrap}}
+    .badge{{padding:5px 10px; border-radius:20px; font-weight:bold; font-size:12px; white-space:nowrap}}
+    img{{max-width:100%; height:auto; display:block}}
     </style>
     <div class="box">
     <div style="width:100%; text-align:center; background:white; padding:0; margin:0;">
-        <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; display:block; margin:0;">
+        <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; max-width:420px; max-height:170px; object-fit:contain; display:block; margin:0 auto; border-radius:8px;">
     </div>
-    <div style="text-align:center; padding:15px;">
-        <h1 style="margin:0; font-size:32px;">EUCLIDES PLAY</h1>
+    <div style="text-align:center; padding:10px 5px 5px 5px;">
+        <h1 style="margin:0; font-size:28px;">EUCLIDES PLAY</h1>
         <p style="margin:5px 0 0 0; color:#555;">Seus desenhos favoritos em um só lugar</p>
     </div>
     <form action="/cadastrar" method="post">
@@ -169,7 +174,7 @@ def index():
             <option style="background:green; color:white;">Devolvido</option>
             <option style="background:yellow; color:black;">Manutenção</option>
         </select>
-        <button style="background:#00aaff;color:white; width:100%; padding:12px; font-weight:bold;">Cadastrar</button>
+        <button style="background:#00aaff;color:white; width:100%; padding:14px; font-weight:bold; font-size:16px; margin-top:8px;">Cadastrar</button>
     </form>
     <script>
     var opcoesUnidade1 = `<option value="">Clique aqui e escolha o Serial - Unidade 1</option>{opcoes1}`;
@@ -194,6 +199,7 @@ def index():
         if(s.value == 'Manutenção'){{ s.style.background='yellow'; s.style.color='black'; }}
     }}
     </script>
+    <div class="tabela-wrap">
     <table>
     <tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook / Serial</th><th>Status</th><th>Acao</th></tr>
     """
@@ -210,7 +216,7 @@ def index():
         <td><form action="/excluir/{r['id']}" method="post" style="display:inline"><button style="background:red;color:white">Excluir</button></form></td>
         </tr>
         """
-    html += "</table></div>"
+    html += "</table></div></div>"
     return render_template_string(html)
 
 @app.route("/cadastrar", methods=["POST"])
