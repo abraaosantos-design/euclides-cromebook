@@ -134,17 +134,21 @@ def index():
     <style>
     *{{box-sizing:border-box}}
     html,body{{width:100%; margin:0; padding:0; overflow-x:hidden}}
-    body{{font-family:Arial; background:#f2f2f2; padding:0; margin:0}}
-    .box{{background:white; width:100%; margin:0 auto; padding:0 0 8px 0; border-radius:0; max-width:700px}}
-    input,select{{width:100%; padding:9px 12px; margin:4px 0; border:1px solid #ccc; border-radius:6px; font-size:15px; display:block}}
+    body{{font-family:Arial; background:#5C2E12; padding:0; margin:0}}
+    .box{{background:#5C2E12; width:100%; margin:0 auto; padding:0 0 10px 0; border-radius:0; max-width:700px}}
+    .topo-marrom{{background:#5C2E12; width:100%; text-align:center; padding:10px 0 4px 0; margin:0}}
+    .topo-marrom img{{width:auto; max-width:90%; height:110px; object-fit:contain; display:block; margin:0 auto; background:white; border-radius:10px; padding:6px}}
+    input,select{{width:100%; padding:9px 12px; margin:4px 0; border:1px solid #ccc; border-radius:6px; font-size:15px; display:block; background:white}}
     button{{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}}
-    .tabela-wrap{{overflow-x:auto; width:100%; -webkit-overflow-scrolling:touch}}
-    .tabela-wrap table{{width:650px; min-width:650px; border-collapse:collapse; margin-top:10px; font-size:13px}}
+    .tabela-wrap{{overflow-x:auto; width:100%; -webkit-overflow-scrolling:touch; background:white; border-radius:8px; margin:10px 12px 0 12px; width:calc(100% - 24px)}}
+    .tabela-wrap table{{width:650px; min-width:650px; border-collapse:collapse; margin-top:5px; font-size:13px; background:white}}
     th,td{{padding:6px; border-bottom:1px solid #ddd; text-align:center; white-space:nowrap}}
     .badge{{padding:5px 10px; border-radius:20px; font-weight:bold; font-size:12px; white-space:nowrap}}
     </style>
     <div class="box">
-    <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; max-height:110px; object-fit:contain; object-position:center; background:white; display:block; margin:0; padding:0; border-radius:0;">
+    <div class="topo-marrom">
+      <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg">
+    </div>
     <form action="/cadastrar" method="post" style="padding:8px 12px 0 12px;">
         <select name="unidade" id="unidadeSelect" onchange="atualizarSerial()" required>
             <option value="">Selecione a Unidade</option>
@@ -158,7 +162,7 @@ def index():
         </select>
         <input name="nome" placeholder="Nome do aluno" required>
         <input name="turma" placeholder="Turma ex: 901" required>
-        <label style="font-size:12px; font-weight:bold;">N do Chromebook / Serial - Clique para abrir a aba:</label>
+        <label style="font-size:12px; font-weight:bold; color:white;">N do Chromebook / Serial - Clique para abrir a aba:</label>
         <select name="chromebook" id="chromebookSelect" required>
             <option value="">Primeiro selecione a Unidade</option>
         </select>
@@ -192,7 +196,7 @@ def index():
         if(s.value == 'Manutenção'){{ s.style.background='yellow'; s.style.color='black'; }}
     }}
     </script>
-    <div class="tabela-wrap" style="padding:0 12px;">
+    <div class="tabela-wrap">
     <table>
     <tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook / Serial</th><th>Status</th><th>Acao</th></tr>
     """
