@@ -103,13 +103,11 @@ def index():
     table{{width:100%; border-collapse:collapse; margin-top:15px}}
     th,td{{padding:8px; border-bottom:1px solid #ddd; text-align:center}}
     .badge{{padding:8px 16px; border-radius:20px; font-weight:bold; font-size:13px; border:none; cursor:pointer}}
-    .badge:hover{{opacity:0.8; transform:scale(1.05)}}
+    .banner{{width:100%; height:auto; max-height:280px; object-fit:contain; border-radius:10px; display:block; background:white}}
     </style>
     <div class="box">
-   <div style="display:flex; align-items:center; justify-content:space-between;">
-<h3 style="text-align:center">EUCLIDES PLAY</h3>
-<img src="/foto" style="width:130px; border-radius:10px;">
-</div>
+    <!-- FOTO GRANDE NO TOPO - LOGO EUCLIDES PLAY -->
+    <img src="/foto?v=2" class="banner">
     <p style="text-align:center; font-size:13px; color:#666;">👆 Clique no Status para trocar: Em uso → Devolvido → Manutenção → Em uso</p>
     <a href="/inventario" style="display:block;text-align:center;background:#111;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">📋 VER INVENTÁRIO DE NOTEBOOKS</a>
     <a href="/unidade1" style="display:block;text-align:center;background:#e11d48;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</a>
@@ -166,7 +164,7 @@ def index():
         <td>{r['nome']}</td>
         <td>{r['turma']}</td>
         <td>{r['chromebook']}</td>
-        <td><form action="/trocar/{r['id']}" method="post" style="display:inline"><button class="badge" style="{estilo}" title="Clique para trocar o status">{r['status']} ↻</button></form></td>
+        <td><form action="/trocar/{r['id']}" method="post" style="display:inline"><button class="badge" style="{estilo}">{r['status']} ↻</button></form></td>
         <td><form action="/excluir/{r['id']}" method="post" style="display:inline"><button style="background:#ff4444;color:white">Excluir</button></form></td>
         </tr>
         """
