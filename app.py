@@ -1,4 +1,3 @@
-Aqui, copia tudo de uma vez, do `from flask` até o final:
 from flask import Flask, request, redirect, url_for, render_template_string, send_file
 from datetime import datetime
 import os
@@ -265,4 +264,3 @@ def unidade3():
     """
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
-Depois de colar e clicar em `Commit changes`, espera o Render ficar Live e me fala se a foto voltou!
