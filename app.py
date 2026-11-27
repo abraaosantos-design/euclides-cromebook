@@ -39,7 +39,7 @@ def index():
     <div class="box">
    <div style="display:flex; align-items:center; justify-content:space-between;">
 <h3 style="text-align:center">EUCLIDES PLAY</h3>
-<img src="WhatsApp Image 2026-11-26 at 23.32.52.jpg" style="width:130px; border-radius:10px;">
+<img src="/foto" style="width:130px; border-radius:10px;">
 </div>
     <form action="/cadastrar" method="post">
         <select name="unidade" required>
