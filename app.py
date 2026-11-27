@@ -25,7 +25,6 @@ def cor_status(status):
         return "background:purple; color:white;"
     return "background:gray; color:white;"
 
-# LISTA DA UNIDADE 1 - TODOS OS SERIALS
 SERIAL_UNIDADE_1 = [
     ("01.12.0058","Acer","NXJHMAA0015242D7852P00","Sala 18"),
     ("01.12.0001","Lenovo","PF24GVA3","Sala 18"),
@@ -94,15 +93,18 @@ def index():
     for r in registros:
         if r['status'] == 'Em uso' and hora_atual >= 17:
             r['status'] = 'Não entregou no dia'
-    html = """
+    linhas_unidade1 = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td><td>{d}</td></tr>" for a,b,c,d in SERIAL_UNIDADE_1])
+    html = f"""
     <style>
-    body{font-family:Arial; background:#f2f2f2; padding:20px}
-    .box{background:white; max-width:900px; margin:auto; padding:20px; border-radius:10px}
-    input,select{width:100%; padding:10px; margin:5px 0; box-sizing:border-box; border:1px solid #ccc; border-radius:6px}
-    button{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}
-    table{width:100%; border-collapse:collapse; margin-top:15px}
-    th,td{padding:8px; border-bottom:1px solid #ddd; text-align:center}
-    .badge{padding:5px 12px; border-radius:20px; font-weight:bold; font-size:13px}
+    body{{font-family:Arial; background:#f2f2f2; padding:20px}}
+    .box{{background:white; max-width:1000px; margin:auto; padding:20px; border-radius:10px}}
+    input,select{{width:100%; padding:10px; margin:5px 0; box-sizing:border-box; border:1px solid #ccc; border-radius:6px}}
+    button{{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}}
+    table{{width:100%; border-collapse:collapse; margin-top:15px}}
+    th,td{{padding:8px; border-bottom:1px solid #ddd; text-align:center}}
+    .badge{{padding:5px 12px; border-radius:20px; font-weight:bold; font-size:13px}}
+    details{{margin:15px 0; border:1px solid #ddd; border-radius:8px; padding:10px}}
+    summary{{font-weight:bold; cursor:pointer; padding:10px; background:#e11d48; color:white; border-radius:6px}}
     </style>
     <div class="box">
    <div style="display:flex; align-items:center; justify-content:space-between;">
@@ -110,9 +112,8 @@ def index():
 <img src="/foto" style="width:130px; border-radius:10px;">
 </div>
     <a href="/inventario" style="display:block;text-align:center;background:#111;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">📋 VER INVENTÁRIO DE NOTEBOOKS</a>
-    <a href="/unidade1" style="display:block;text-align:center;background:#e11d48;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</a>
     <form action="/cadastrar" method="post">
-        <select name="unidade" required>
+        <select name="unidade" id="unidadeSelect" onchange="mostrarSerial()" required>
             <option value="">Selecione a Unidade</option>
             <option>Colégio Unidade 1</option>
             <option>Creche Vila da Penha Unidade 2</option>
@@ -123,6 +124,14 @@ def index():
             <option>Valqueire Unidade 6</option>
             <option>Valqueire Unidade 7</option>
         </select>
+        <div id="boxSerialUnidade1" style="display:none; background:#fff5f5; border:2px solid #e11d48; border-radius:8px; padding:12px; margin:10px 0;">
+            <b style="color:#e11d48;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</b>
+            <input id="buscaSerial" oninput="filtrarSerial()" placeholder="Buscar serial, patrimônio..." style="margin-top:8px;">
+            <div style="max-height:300px; overflow:auto;">
+            <table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th><th>Sala</th></tr></thead><tbody id="tabelaSerial">{linhas_unidade1}</tbody></table>
+            </div>
+            <p style="font-size:13px;">Total Unidade 1: <b>59</b> | Falta: 01.12.0007</p>
+        </div>
         <input name="nome" placeholder="Nome do aluno" required>
         <input name="turma" placeholder="Turma ex: 901" required>
         <input name="chromebook" placeholder="N do Chromebook ex: CB-01" required>
@@ -134,12 +143,24 @@ def index():
         <button style="background:#00aaff;color:white; width:100%; padding:12px; font-weight:bold;">Cadastrar</button>
     </form>
     <script>
-    function pintarSelect(){
+    function mostrarSerial(){{
+        var u = document.getElementById('unidadeSelect').value;
+        var box = document.getElementById('boxSerialUnidade1');
+        if(u.includes('Unidade 1')){{ box.style.display='block'; }}
+        else{{ box.style.display='none'; }}
+    }}
+    function filtrarSerial(){{
+        var q = document.getElementById('buscaSerial').value.toLowerCase();
+        document.querySelectorAll('#tabelaSerial tr').forEach(r=>{{
+            r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
+        }});
+    }}
+    function pintarSelect(){{
         var s = document.getElementById('selectStatus');
-        if(s.value == 'Em uso'){ s.style.background='red'; s.style.color='white'; }
-        if(s.value == 'Devolvido'){ s.style.background='green'; s.style.color='white'; }
-        if(s.value == 'Manutenção'){ s.style.background='yellow'; s.style.color='black'; }
-    }
+        if(s.value == 'Em uso'){{ s.style.background='red'; s.style.color='white'; }}
+        if(s.value == 'Devolvido'){{ s.style.background='green'; s.style.color='white'; }}
+        if(s.value == 'Manutenção'){{ s.style.background='yellow'; s.style.color='black'; }}
+    }}
     </script>
     <table>
     <tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook</th><th>Status</th><th>Acao</th></tr>
@@ -192,7 +213,7 @@ def unidade1():
     <html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Unidade 1 - Serial de todos os Chromes</title>
     <style>body{{font-family:Arial;background:#0f0f0f;color:#fff;padding:20px}} .box{{background:#1a1a1a;padding:20px;border-radius:12px;max-width:1000px;margin:auto}} input{{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#222;color:#fff}} table{{width:100%;border-collapse:collapse;margin-top:10px}} th,td{{padding:10px;border-bottom:1px solid #333;text-align:left}} th{{background:#e11d48}} a{{color:#fff}}</style></head>
-    <body><div class='box'><a href='/'>← Voltar</a><h1>UNIDADE 1 - SERIAL DE TODOS OS CHROMES</h1><p>Total: <b id='total'>59</b> | Falta: 01.12.0007</p><input id='busca' placeholder='Buscar por patrimônio, serial...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th><th>Sala</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
+    <body><div class='box'><a href='/'>← Voltar</a><h1>UNIDADE 1 - SERIAL DE TODOS OS CHROMES</h1><p>Total: <b id='total'>59</b></p><input id='busca' placeholder='Buscar...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th><th>Sala</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
     <script>const b=document.getElementById('busca'); b.addEventListener('input',()=>{{const q=b.value.toLowerCase(); let n=0; document.querySelectorAll('#tabela tr').forEach(r=>{{const ok=r.innerText.toLowerCase().includes(q); r.style.display=ok?'':'none'; if(ok)n++;}}); document.getElementById('total').textContent=n;}});</script>
     </body></html>
     """
