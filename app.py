@@ -25,6 +25,7 @@ def cor_status(status):
         return "background:purple; color:white;"
     return "background:gray; color:white;"
 
+# SO UNIDADE 1 TEM SERIAL - OUTRAS UNIDADES FICAM VAZIAS
 SERIAL_UNIDADE_1 = [
     ("01.12.0058","Acer","NXJHMAA0015242D7852P00"),
     ("01.12.0001","Lenovo","PF24GVA3"),
@@ -112,7 +113,7 @@ def index():
     <a href="/inventario" style="display:block;text-align:center;background:#111;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">📋 VER INVENTÁRIO DE NOTEBOOKS</a>
     <a href="/unidade1" style="display:block;text-align:center;background:#e11d48;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</a>
     <form action="/cadastrar" method="post">
-        <select name="unidade" required>
+        <select name="unidade" id="unidadeSelect" onchange="atualizarSerial()" required>
             <option value="">Selecione a Unidade</option>
             <option>Colégio Unidade 1</option>
             <option>Creche Vila da Penha Unidade 2</option>
@@ -126,9 +127,8 @@ def index():
         <input name="nome" placeholder="Nome do aluno" required>
         <input name="turma" placeholder="Turma ex: 901" required>
         <label style="font-size:13px; font-weight:bold;">N do Chromebook / Serial - Clique para abrir a aba:</label>
-        <select name="chromebook" required>
-            <option value="">👇 Clique aqui e escolha o Serial</option>
-            {opcoes_serial}
+        <select name="chromebook" id="chromebookSelect" required>
+            <option value="">👆 Primeiro selecione a Unidade</option>
         </select>
         <select name="status" id="selectStatus" onchange="pintarSelect()" style="background:red; color:white; font-weight:bold;">
             <option style="background:red; color:white;">Em uso</option>
@@ -138,6 +138,18 @@ def index():
         <button style="background:#00aaff;color:white; width:100%; padding:12px; font-weight:bold;">Cadastrar</button>
     </form>
     <script>
+    var opcoesUnidade1 = `<option value="">👇 Clique aqui e escolha o Serial - Unidade 1</option>{opcoes_serial}`;
+    function atualizarSerial(){{
+        var u = document.getElementById('unidadeSelect').value;
+        var s = document.getElementById('chromebookSelect');
+        if(u.includes('Unidade 1')){{
+            s.innerHTML = opcoesUnidade1;
+        }} else if(u == ''){{
+            s.innerHTML = '<option value="">👆 Primeiro selecione a Unidade</option>';
+        }} else {{
+            s.innerHTML = '<option value="">Nenhum serial cadastrado para esta unidade - Vazio</option>';
+        }}
+    }}
     function pintarSelect(){{
         var s = document.getElementById('selectStatus');
         if(s.value == 'Em uso'){{ s.style.background='red'; s.style.color='white'; }}
@@ -184,7 +196,7 @@ def inventario():
     <html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Inventário - Euclides Play</title>
     <style>body{{font-family:Arial;background:#0f0f0f;color:#fff;padding:20px}} .box{{background:#1a1a1a;padding:20px;border-radius:12px;max-width:1000px;margin:auto}} input{{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#222;color:#fff}} table{{width:100%;border-collapse:collapse;margin-top:10px}} th,td{{padding:10px;border-bottom:1px solid #333;text-align:left}} th{{background:#e11d48}} a{{color:#fff}}</style></head>
-    <body><div class='box'><a href='/'>← Voltar</a><h1>Inventário - Notebooks - Unidade 1</h1><p>Total: <b id='total'>59</b> | Falta: 01.12.0007</p><input id='busca' placeholder='Buscar por patrimônio, serial, marca...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
+    <body><div class='box'><a href='/'>← Voltar</a><h1>Inventário - Notebooks - Unidade 1</h1><p>Total Unidade 1: <b id='total'>59</b> | Outras Unidades: Vazio | Falta: 01.12.0007</p><input id='busca' placeholder='Buscar por patrimônio, serial, marca...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
     <script>const b=document.getElementById('busca'); b.addEventListener('input',()=>{{const q=b.value.toLowerCase(); let n=0; document.querySelectorAll('#tabela tr').forEach(r=>{{const ok=r.innerText.toLowerCase().includes(q); r.style.display=ok?'':'none'; if(ok)n++;}}); document.getElementById('total').textContent=n;}});</script>
     </body></html>
     """
@@ -196,7 +208,7 @@ def unidade1():
     <html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Unidade 1 - Serial de todos os Chromes</title>
     <style>body{{font-family:Arial;background:#0f0f0f;color:#fff;padding:20px}} .box{{background:#1a1a1a;padding:20px;border-radius:12px;max-width:1000px;margin:auto}} input{{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#222;color:#fff}} table{{width:100%;border-collapse:collapse;margin-top:10px}} th,td{{padding:10px;border-bottom:1px solid #333;text-align:left}} th{{background:#e11d48}} a{{color:#fff}}</style></head>
-    <body><div class='box'><a href='/'>← Voltar</a><h1>UNIDADE 1 - SERIAL DE TODOS OS CHROMES</h1><p>Total: <b id='total'>59</b></p><input id='busca' placeholder='Buscar...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
+    <body><div class='box'><a href='/'>← Voltar</a><h1>UNIDADE 1 - SERIAL DE TODOS OS CHROMES</h1><p>Total: <b id='total'>59</b> | Outras Unidades: Vazio</p><input id='busca' placeholder='Buscar...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
     <script>const b=document.getElementById('busca'); b.addEventListener('input',()=>{{const q=b.value.toLowerCase(); let n=0; document.querySelectorAll('#tabela tr').forEach(r=>{{const ok=r.innerText.toLowerCase().includes(q); r.style.display=ok?'':'none'; if(ok)n++;}}); document.getElementById('total').textContent=n;}});</script>
     </body></html>
     """
