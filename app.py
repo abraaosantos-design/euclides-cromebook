@@ -6,10 +6,10 @@ app = Flask(__name__)
 
 @app.route('/foto')
 def foto():
-    # Procura a foto com o nome simples foto.jpg
-    if os.path.exists('foto.jpg'):
-        return send_file('foto.jpg')
-    return "Foto nao encontrada - suba o arquivo foto.jpg no GitHub", 404
+    for nome in ['foto.jpg', 'foto', 'foto.jpg.jpg', 'foto.jpeg', 'foto.png']:
+        if os.path.exists(nome):
+            return send_file(nome)
+    return "Foto nao encontrada", 404
 
 registros = []
 proximo_id = [1]
