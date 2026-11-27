@@ -26,65 +26,65 @@ def cor_status(status):
     return "background:gray; color:white;"
 
 SERIAL_UNIDADE_1 = [
-    ("01.12.0058","Acer","NXJHMAA0015242D7852P00","Sala 18"),
-    ("01.12.0001","Lenovo","PF24GVA3","Sala 18"),
-    ("01.12.0002","Lenovo","PX003477","Sala 12"),
-    ("01.12.0003","Lenovo","PX000155","Sala 18"),
-    ("01.12.0004","Lenovo","PF24FZR0","Sala 18"),
-    ("01.12.0005","Lenovo","PF24K5ER","Sala 18"),
-    ("01.12.0006","Lenovo","PX000909","Sala 18"),
-    ("01.12.0008","Lenovo","PX20774","Sala 18"),
-    ("01.12.0009","Lenovo","PX001210","Sala 18"),
-    ("01.12.0010","Acer","NXHOHAL001909357CA9501","Sala 18"),
-    ("01.12.0012","Acer","NXHKPAL0021909F19501","Sala 18"),
-    ("01.12.0013","Acer","NXH0HAL00190935E639501","Sala 18"),
-    ("01.12.0014","Lenovo","PF255DWQ","Sala 18"),
-    ("01.12.0016","Lenovo","P209ZLQ7","Sala 18"),
-    ("01.12.0019","Lenovo","P299B2W","Sala 18"),
-    ("01.12.0020","Lenovo","PF24K0YM","Sala 18"),
-    ("01.12.0021","Lenovo","PF24GAQ3","Sala 18"),
-    ("01.12.0022","Lenovo","PF24K4C0","Sala 18"),
-    ("01.12.0023","Lenovo","PF2257EZ","Sala 18"),
-    ("01.12.0024","Lenovo","PF24HRKH","Sala 18"),
-    ("01.12.0025","Lenovo","PF24LB80","Sala 18"),
-    ("01.12.0027","Lenovo","P20A4G45","Sala 18"),
-    ("01.12.0028","Lenovo","PF25X1J7","Sala 18"),
-    ("01.12.0029","Acer","NXHAL001904292AC9501","Sala 13"),
-    ("01.12.0030","Acer","NXH0HAL00190428D969501","Sala 18"),
-    ("01.12.0031","Acer","NXH0HAL00190428DBA9501","Sala 18"),
-    ("01.12.0032","Acer","NXH0HAL00190428D6E9501","Sala 18"),
-    ("01.12.0033","Acer","NXH0HAL00192052CDB9501","Sala 18"),
-    ("01.12.0034","Lenovo","PF255A0X","Sala 18"),
-    ("01.12.0035","Acer","NXH0HAL00192052D2E9501","Sala 18"),
-    ("01.12.0036","Lenovo","PX020982","Sala 6"),
-    ("01.12.0037","Lenovo","PX021092","Sala 7"),
-    ("01.12.0038","Lenovo","PX020770","Sala 18"),
-    ("01.12.0039","Lenovo","P2099BV1","Sala 18"),
-    ("01.12.0040","Lenovo","PF24GE08","Sala 18"),
-    ("01.12.0041","Lenovo","PF24GAR3","Sala 18"),
-    ("01.12.0042","Lenovo","PF24HW1P","Sala 18"),
-    ("01.12.0043","Lenovo","PF24K31S","Sala 18"),
-    ("01.12.0044","Lenovo","PX000015","Sala 9"),
-    ("01.12.0045","Acer","NXH0HAL0019205256C9501","Biblioteca"),
-    ("01.12.0046","Lenovo","PX004368","Sala 10"),
-    ("01.12.0047","Lenovo","PX000982","Sala 8"),
-    ("01.12.0048","Lenovo","PF24K03T","Sala 18"),
-    ("01.12.0049","Lenovo","PF24GE0L","Sala 18"),
-    ("01.12.0050","Lenovo","PF24JCTE","Sala 18"),
-    ("01.12.0051","Lenovo","PF24K1DG","Sala 18"),
-    ("01.12.0052","Acer","NXH0HAL00192052D1F9501","Sala 4"),
-    ("01.12.0053","Lenovo","PF24GGBF","Sala 18"),
-    ("01.12.0054","Lenovo","PF24HW3N","Sala 18"),
-    ("01.12.0055","Lenovo","PX000704","Sala 18"),
-    ("01.12.0056","Lenovo","PX008909","Sala 18"),
-    ("01.12.0057","Acer","NXJHRAA001525254A82P00","Sala Maker"),
-    ("01.12.0059","Acer","NXH0HAL001920526619501","Sala Prime"),
-    ("01.12.0060","Lenovo","PF24K449","Sala 18"),
-    ("01.12.0061","Lenovo","PX008652","Sala 5"),
-    ("01.12.0062","Lenovo","PF24JJ4S","Sala 4"),
-    ("01.12.0063","Acer","NXJHMAA001524306482P00","Sala 18"),
-    ("01.12.0064","Lenovo","PF253XQC","Sala 18"),
-    ("01.12.0065","Lenovo","PF254FGV","Sala 18"),
+    ("01.12.0058","Acer","NXJHMAA0015242D7852P00"),
+    ("01.12.0001","Lenovo","PF24GVA3"),
+    ("01.12.0002","Lenovo","PX003477"),
+    ("01.12.0003","Lenovo","PX000155"),
+    ("01.12.0004","Lenovo","PF24FZR0"),
+    ("01.12.0005","Lenovo","PF24K5ER"),
+    ("01.12.0006","Lenovo","PX000909"),
+    ("01.12.0008","Lenovo","PX20774"),
+    ("01.12.0009","Lenovo","PX001210"),
+    ("01.12.0010","Acer","NXHOHAL001909357CA9501"),
+    ("01.12.0012","Acer","NXHKPAL0021909F19501"),
+    ("01.12.0013","Acer","NXH0HAL00190935E639501"),
+    ("01.12.0014","Lenovo","PF255DWQ"),
+    ("01.12.0016","Lenovo","P209ZLQ7"),
+    ("01.12.0019","Lenovo","P299B2W"),
+    ("01.12.0020","Lenovo","PF24K0YM"),
+    ("01.12.0021","Lenovo","PF24GAQ3"),
+    ("01.12.0022","Lenovo","PF24K4C0"),
+    ("01.12.0023","Lenovo","PF2257EZ"),
+    ("01.12.0024","Lenovo","PF24HRKH"),
+    ("01.12.0025","Lenovo","PF24LB80"),
+    ("01.12.0027","Lenovo","P20A4G45"),
+    ("01.12.0028","Lenovo","PF25X1J7"),
+    ("01.12.0029","Acer","NXHAL001904292AC9501"),
+    ("01.12.0030","Acer","NXH0HAL00190428D969501"),
+    ("01.12.0031","Acer","NXH0HAL00190428DBA9501"),
+    ("01.12.0032","Acer","NXH0HAL00190428D6E9501"),
+    ("01.12.0033","Acer","NXH0HAL00192052CDB9501"),
+    ("01.12.0034","Lenovo","PF255A0X"),
+    ("01.12.0035","Acer","NXH0HAL00192052D2E9501"),
+    ("01.12.0036","Lenovo","PX020982"),
+    ("01.12.0037","Lenovo","PX021092"),
+    ("01.12.0038","Lenovo","PX020770"),
+    ("01.12.0039","Lenovo","P2099BV1"),
+    ("01.12.0040","Lenovo","PF24GE08"),
+    ("01.12.0041","Lenovo","PF24GAR3"),
+    ("01.12.0042","Lenovo","PF24HW1P"),
+    ("01.12.0043","Lenovo","PF24K31S"),
+    ("01.12.0044","Lenovo","PX000015"),
+    ("01.12.0045","Acer","NXH0HAL0019205256C9501"),
+    ("01.12.0046","Lenovo","PX004368"),
+    ("01.12.0047","Lenovo","PX000982"),
+    ("01.12.0048","Lenovo","PF24K03T"),
+    ("01.12.0049","Lenovo","PF24GE0L"),
+    ("01.12.0050","Lenovo","PF24JCTE"),
+    ("01.12.0051","Lenovo","PF24K1DG"),
+    ("01.12.0052","Acer","NXH0HAL00192052D1F9501"),
+    ("01.12.0053","Lenovo","PF24GGBF"),
+    ("01.12.0054","Lenovo","PF24HW3N"),
+    ("01.12.0055","Lenovo","PX000704"),
+    ("01.12.0056","Lenovo","PX008909"),
+    ("01.12.0057","Acer","NXJHRAA001525254A82P00"),
+    ("01.12.0059","Acer","NXH0HAL001920526619501"),
+    ("01.12.0060","Lenovo","PF24K449"),
+    ("01.12.0061","Lenovo","PX008652"),
+    ("01.12.0062","Lenovo","PF24JJ4S"),
+    ("01.12.0063","Acer","NXJHMAA001524306482P00"),
+    ("01.12.0064","Lenovo","PF253XQC"),
+    ("01.12.0065","Lenovo","PF254FGV"),
 ]
 
 @app.route("/")
@@ -93,9 +93,7 @@ def index():
     for r in registros:
         if r['status'] == 'Em uso' and hora_atual >= 17:
             r['status'] = 'Não entregou no dia'
-    # ABA COM TODOS OS SERIALS PARA O CAMPO N DO CHROMEBOOK
-    opcoes_serial = "".join([f"<option value='{a} - {c}'>{a} - {c} - {b} - {d}</option>" for a,b,c,d in SERIAL_UNIDADE_1])
-    linhas_unidade1 = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td><td>{d}</td></tr>" for a,b,c,d in SERIAL_UNIDADE_1])
+    opcoes_serial = "".join([f"<option value='{a} - {c}'>{a} - {c} - {b}</option>" for a,b,c in SERIAL_UNIDADE_1])
     html = f"""
     <style>
     body{{font-family:Arial; background:#f2f2f2; padding:20px}}
@@ -181,24 +179,24 @@ def excluir(id):
 @app.route('/inventario')
 def inventario():
     dados = SERIAL_UNIDADE_1
-    linhas = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td><td>{d}</td></tr>" for a,b,c,d in dados])
+    linhas = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>" for a,b,c in dados])
     return f"""
     <html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Inventário - Euclides Play</title>
     <style>body{{font-family:Arial;background:#0f0f0f;color:#fff;padding:20px}} .box{{background:#1a1a1a;padding:20px;border-radius:12px;max-width:1000px;margin:auto}} input{{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#222;color:#fff}} table{{width:100%;border-collapse:collapse;margin-top:10px}} th,td{{padding:10px;border-bottom:1px solid #333;text-align:left}} th{{background:#e11d48}} a{{color:#fff}}</style></head>
-    <body><div class='box'><a href='/'>← Voltar</a><h1>Inventário - Notebooks</h1><p>Total: <b id='total'>59</b> | Falta: 01.12.0007</p><input id='busca' placeholder='Buscar por patrimônio, serial, marca...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th><th>Sala</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
+    <body><div class='box'><a href='/'>← Voltar</a><h1>Inventário - Notebooks - Unidade 1</h1><p>Total: <b id='total'>59</b> | Falta: 01.12.0007</p><input id='busca' placeholder='Buscar por patrimônio, serial, marca...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
     <script>const b=document.getElementById('busca'); b.addEventListener('input',()=>{{const q=b.value.toLowerCase(); let n=0; document.querySelectorAll('#tabela tr').forEach(r=>{{const ok=r.innerText.toLowerCase().includes(q); r.style.display=ok?'':'none'; if(ok)n++;}}); document.getElementById('total').textContent=n;}});</script>
     </body></html>
     """
 
 @app.route('/unidade1')
 def unidade1():
-    linhas = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td><td>{d}</td></tr>" for a,b,c,d in SERIAL_UNIDADE_1])
+    linhas = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>" for a,b,c in SERIAL_UNIDADE_1])
     return f"""
     <html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Unidade 1 - Serial de todos os Chromes</title>
     <style>body{{font-family:Arial;background:#0f0f0f;color:#fff;padding:20px}} .box{{background:#1a1a1a;padding:20px;border-radius:12px;max-width:1000px;margin:auto}} input{{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#222;color:#fff}} table{{width:100%;border-collapse:collapse;margin-top:10px}} th,td{{padding:10px;border-bottom:1px solid #333;text-align:left}} th{{background:#e11d48}} a{{color:#fff}}</style></head>
-    <body><div class='box'><a href='/'>← Voltar</a><h1>UNIDADE 1 - SERIAL DE TODOS OS CHROMES</h1><p>Total: <b id='total'>59</b></p><input id='busca' placeholder='Buscar...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th><th>Sala</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
+    <body><div class='box'><a href='/'>← Voltar</a><h1>UNIDADE 1 - SERIAL DE TODOS OS CHROMES</h1><p>Total: <b id='total'>59</b></p><input id='busca' placeholder='Buscar...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
     <script>const b=document.getElementById('busca'); b.addEventListener('input',()=>{{const q=b.value.toLowerCase(); let n=0; document.querySelectorAll('#tabela tr').forEach(r=>{{const ok=r.innerText.toLowerCase().includes(q); r.style.display=ok?'':'none'; if(ok)n++;}}); document.getElementById('total').textContent=n;}});</script>
     </body></html>
     """
