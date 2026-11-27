@@ -1,11 +1,15 @@
 from flask import Flask, request, redirect, url_for, render_template_string, send_file
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
 @app.route('/foto')
 def foto():
-    return send_file('foto.jpg')
+    # Procura a foto com o nome simples foto.jpg
+    if os.path.exists('foto.jpg'):
+        return send_file('foto.jpg')
+    return "Foto nao encontrada - suba o arquivo foto.jpg no GitHub", 404
 
 registros = []
 proximo_id = [1]
