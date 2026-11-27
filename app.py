@@ -1,3 +1,4 @@
+Aqui, copia tudo de uma vez, do `from flask` até o final:
 from flask import Flask, request, redirect, url_for, render_template_string, send_file
 from datetime import datetime
 import os
@@ -6,10 +7,16 @@ app = Flask(__name__)
 
 @app.route('/foto')
 def foto():
-    for nome in ['foto.jpg', 'foto', 'foto.jpg.jpg', 'foto.jpeg', 'foto.png']:
-        if os.path.exists(nome):
-            return send_file(nome)
-    return "Foto nao encontrada", 404
+    arquivos = os.listdir('.')
+    for nome in arquivos:
+        if nome.lower().startswith('foto') and nome.lower().endswith(('.jpg','.jpeg','.png','.webp')):
+            return send_file(nome, mimetype='image/jpeg')
+    return f"Foto nao encontrada. Arquivos na pasta: {arquivos}", 404
+
+@app.route('/teste-foto')
+def teste_foto():
+    arquivos = os.listdir('.')
+    return f"Arquivos que o Render esta vendo: {arquivos}"
 
 registros = []
 proximo_id = [1]
@@ -136,7 +143,7 @@ def index():
     <div class="box">
    <div style="display:flex; align-items:center; justify-content:space-between;">
 <h3 style="text-align:center">EUCLIDES PLAY</h3>
-<img src="/foto" style="width:130px; border-radius:10px;">
+<img src="/foto?v=2" style="width:130px; border-radius:10px;">
 </div>
     <a href="/inventario" style="display:block;text-align:center;background:#111;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">📋 VER INVENTÁRIO DE NOTEBOOKS</a>
     <a href="/unidade1" style="display:block;text-align:center;background:#e11d48;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</a>
@@ -258,3 +265,4 @@ def unidade3():
     """
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+Depois de colar e clicar em `Commit changes`, espera o Render ficar Live e me fala se a foto voltou!
