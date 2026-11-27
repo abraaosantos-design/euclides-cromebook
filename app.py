@@ -148,10 +148,6 @@ def index():
     <div style="width:100%; text-align:center; background:white; padding:0; margin:0;">
         <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; max-width:420px; max-height:170px; object-fit:contain; display:block; margin:0 auto; border-radius:8px;">
     </div>
-    <div style="text-align:center; padding:10px 5px 5px 5px;">
-        <h1 style="margin:0; font-size:28px;">EUCLIDES PLAY</h1>
-        <p style="margin:5px 0 0 0; color:#555;">Seus desenhos favoritos em um só lugar</p>
-    </div>
     <form action="/cadastrar" method="post">
         <select name="unidade" id="unidadeSelect" onchange="atualizarSerial()" required>
             <option value="">Selecione a Unidade</option>
