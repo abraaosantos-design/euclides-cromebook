@@ -1,11 +1,13 @@
-from flask import Flask, request, redirect, url_for, render_template_string
+from flask import Flask, request, redirect, url_for, render_template_string, send_file
 from datetime import datetime
 
 app = Flask(__name__)
+
 @app.route('/foto')
 def foto():
-    from flask import send_file
-send_file('WhatsApp Image 2026-11-26 at 23.32.52.jpg')registros = []
+    return send_file('WhatsApp Image 2026-11-26 at 23.32.52.jpg')
+
+registros = []
 proximo_id = [1]
 
 def cor_status(status):
