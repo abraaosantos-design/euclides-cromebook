@@ -136,8 +136,8 @@ def index():
     html,body{{width:100%; margin:0; padding:0; overflow-x:hidden}}
     body{{font-family:Arial; background:#5C2E12; padding:0; margin:0}}
     .box{{background:#5C2E12; width:100%; margin:0 auto; padding:0 0 10px 0; border-radius:0; max-width:700px}}
-    .topo-marrom{{background:#5C2E12; width:100%; text-align:center; padding:10px 0 4px 0; margin:0}}
-    .topo-marrom img{{width:auto; max-width:90%; height:110px; object-fit:contain; display:block; margin:0 auto; background:white; border-radius:10px; padding:6px}}
+    .topo-marrom{{background:#5C2E12; width:100%; text-align:center; padding:14px 0 8px 0; margin:0}}
+    .topo-marrom img{{width:88%; max-width:560px; height:auto; object-fit:contain; display:block; margin:0 auto; background:white; border-radius:12px; padding:12px}}
     input,select{{width:100%; padding:9px 12px; margin:4px 0; border:1px solid #ccc; border-radius:6px; font-size:15px; display:block; background:white}}
     button{{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}}
     .tabela-wrap{{overflow-x:auto; width:100%; -webkit-overflow-scrolling:touch; background:white; border-radius:8px; margin:10px 12px 0 12px; width:calc(100% - 24px)}}
