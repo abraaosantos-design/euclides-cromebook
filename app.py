@@ -27,21 +27,27 @@ def index():
     html = """
     <style>
     body{font-family:Arial; background:#f2f2f2; padding:20px}
-    .box{background:white; max-width:800px; margin:auto; padding:20px; border-radius:10px}
-    input,select{width:100%; padding:10px; margin:5px 0; box-sizing:border-box}
+    .box{background:white; max-width:900px; margin:auto; padding:20px; border-radius:10px}
+    input,select{width:100%; padding:10px; margin:5px 0; box-sizing:border-box; border:1px solid #ccc; border-radius:6px}
     button{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}
     table{width:100%; border-collapse:collapse; margin-top:15px}
     th,td{padding:8px; border-bottom:1px solid #ddd; text-align:center}
     .badge{padding:5px 12px; border-radius:20px; font-weight:bold; font-size:13px}
     </style>
     <div class="box">
-    <h3>EUCLIDES PLAY</h3>
+    <h3 style="text-align:center">EUCLIDES PLAY</h3>
     <form action="/cadastrar" method="post">
         <select name="unidade" required>
             <option value="">Selecione a Unidade</option>
-            <option>Unidade 1</option>
-            <option>Unidade 2</option>
-            <option>Unidade 3</option>
+            <option>Colégio Vila da Penha</option>
+            <option>Creche Vila da Penha</option>
+            <option>Cachambi</option>
+            <option>Creche Cachambi</option>
+            <option>Vila Isabel</option>
+            <option>Vila Valqueire</option>
+            <option>Vila Valqueire 2</option>
+            <option>Unidade 8</option>
+            <option>Unidade 9</option>
         </select>
         <input name="nome" placeholder="Nome do aluno" required>
         <input name="turma" placeholder="Turma ex: 901" required>
@@ -51,7 +57,7 @@ def index():
             <option style="background:green; color:white;">Devolvido</option>
             <option style="background:yellow; color:black;">Manutenção</option>
         </select>
-        <button style="background:#00aaff;color:white">Cadastrar</button>
+        <button style="background:#00aaff;color:white; width:100%; padding:12px; font-weight:bold;">Cadastrar</button>
     </form>
     <script>
     function pintarSelect(){
