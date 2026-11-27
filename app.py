@@ -140,14 +140,17 @@ def index():
     .badge{{padding:5px 12px; border-radius:20px; font-weight:bold; font-size:13px}}
     </style>
     <div class="box">
-   <div style="display:flex; align-items:center; justify-content:space-between;">
-<div style="width:100%; text-align:center; background:white; padding:0; margin:0;">
-    <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; display:block; margin:0;">
-</div>
-<div style="text-align:center; padding:15px;">
-    <h1 style="margin:0; font-size:32px;">EUCLIDES PLAY</h1>
-    <p style="margin:5px 0 0 0; color:#555;">Seus desenhos favoritos em um só lugar</p>
-</div>
+    <div style="width:100%; text-align:center; background:white; padding:0; margin:0;">
+        <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; display:block; margin:0;">
+    </div>
+    <div style="text-align:center; padding:15px;">
+        <h1 style="margin:0; font-size:32px;">EUCLIDES PLAY</h1>
+        <p style="margin:5px 0 0 0; color:#555;">Seus desenhos favoritos em um só lugar</p>
+    </div>
+    <form action="/cadastrar" method="post">
+        <select name="unidade" id="unidadeSelect" onchange="atualizarSerial()" required>
+            <option value="">Selecione a Unidade</option>
+            <option>Unidade 1 - Vila da Penha</option>
             <option>Vila da Penha Unidade 3</option>
             <option>Cachambi Unidade 4</option>
             <option>Creche Cachambi</option>
@@ -159,7 +162,7 @@ def index():
         <input name="turma" placeholder="Turma ex: 901" required>
         <label style="font-size:13px; font-weight:bold;">N do Chromebook / Serial - Clique para abrir a aba:</label>
         <select name="chromebook" id="chromebookSelect" required>
-            <option value="">👆 Primeiro selecione a Unidade</option>
+            <option value="">Primeiro selecione a Unidade</option>
         </select>
         <select name="status" id="selectStatus" onchange="pintarSelect()" style="background:red; color:white; font-weight:bold;">
             <option style="background:red; color:white;">Em uso</option>
@@ -169,8 +172,8 @@ def index():
         <button style="background:#00aaff;color:white; width:100%; padding:12px; font-weight:bold;">Cadastrar</button>
     </form>
     <script>
-    var opcoesUnidade1 = `<option value="">👇 Clique aqui e escolha o Serial - Unidade 1</option>{opcoes1}`;
-    var opcoesUnidade3 = `<option value="">👇 Clique aqui e escolha o Serial - Unidade 3</option>{opcoes3}`;
+    var opcoesUnidade1 = `<option value="">Clique aqui e escolha o Serial - Unidade 1</option>{opcoes1}`;
+    var opcoesUnidade3 = `<option value="">Clique aqui e escolha o Serial - Unidade 3</option>{opcoes3}`;
     function atualizarSerial(){{
         var u = document.getElementById('unidadeSelect').value;
         var s = document.getElementById('chromebookSelect');
@@ -179,7 +182,7 @@ def index():
         }} else if(u.includes('Unidade 3')){{
             s.innerHTML = opcoesUnidade3;
         }} else if(u == ''){{
-            s.innerHTML = '<option value="">👆 Primeiro selecione a Unidade</option>';
+            s.innerHTML = '<option value="">Primeiro selecione a Unidade</option>';
         }} else {{
             s.innerHTML = '<option value="">Nenhum serial cadastrado para esta unidade - Vazio</option>';
         }}
@@ -258,5 +261,6 @@ def unidade3():
     <script>const b=document.getElementById('busca'); b.addEventListener('input',()=>{{const q=b.value.toLowerCase(); let n=0; document.querySelectorAll('#tabela tr').forEach(r=>{{const ok=r.innerText.toLowerCase().includes(q); r.style.display=ok?'':'none'; if(ok)n++;}}); document.getElementById('total').textContent=n;}});</script>
     </body></html>
     """
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
