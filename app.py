@@ -87,30 +87,60 @@ SERIAL_UNIDADE_1 = [
     ("01.12.0065","Lenovo","PF254FGV"),
 ]
 
+SERIAL_UNIDADE_3 = [
+    ("03.12.0001","Lenovo","PF24G6BR"),
+    ("03.12.0002","Lenovo","P20A4G11"),
+    ("03.12.0003","Lenovo","PF24G47"),
+    ("03.12.0004","Lenovo","PF253ZQL"),
+    ("03.12.0005","Lenovo","PF24HW21"),
+    ("03.12.0006","Lenovo","PF24K01C"),
+    ("03.12.0007","Lenovo","P20A4G3M"),
+    ("03.12.0008","Lenovo","PF255328"),
+    ("03.12.0009","Lenovo","P209ZMG0"),
+    ("03.12.0010","Lenovo","PF24FZPB"),
+    ("03.12.0011","Lenovo","P2099BLW"),
+    ("03.12.0012","Lenovo","P2099B98"),
+    ("03.12.0013","Lenovo","PF24K1F0"),
+    ("03.12.0014","Lenovo","PX000094"),
+    ("03.12.0015","Acer","NXAYRAL001206A5A869501"),
+    ("03.12.0016","Acer","NXHKPAL00214190A159501"),
+    ("03.12.0017","Acer","NXHKPAL002141909BE9501"),
+    ("03.12.0018","Acer","NXHKPAL0021419096A9501"),
+    ("03.12.0019","Acer","NXHKPAL002141909639501"),
+    ("03.12.0020","Acer","NXHKPAL002141909CA9501"),
+    ("03.12.0021","Acer","NXAYRAL001205A55249501"),
+    ("03.12.0022","Acer","NXHKPAL002141909649501"),
+    ("03.12.0023","Acer","NXAYRAL001206A5AAB9501"),
+    ("03.12.0024","Acer","NXHKPAL002141909AF9501"),
+    ("03.12.0025","Acer","NXHKPAL002141909F49501"),
+]
+
 @app.route("/")
 def index():
     hora_atual = datetime.now().hour
     for r in registros:
         if r['status'] == 'Em uso' and hora_atual >= 17:
             r['status'] = 'Não entregou no dia'
-    opcoes_serial = "".join([f"<option value='{a} - {c}'>{a} - {c} - {b}</option>" for a,b,c in SERIAL_UNIDADE_1])
+    opcoes1 = "".join([f"<option value='{a} - {c}'>{a} - {c} - {b}</option>" for a,b,c in SERIAL_UNIDADE_1])
+    opcoes3 = "".join([f"<option value='{a} - {c}'>{a} - {c} - {b}</option>" for a,b,c in SERIAL_UNIDADE_3])
     html = f"""
     <style>
     body{{font-family:Arial; background:#f2f2f2; padding:20px}}
-    .box{{background:white; max-width:1100px; margin:auto; padding:20px; border-radius:10px}}
+    .box{{background:white; max-width:1000px; margin:auto; padding:20px; border-radius:10px}}
     input,select{{width:100%; padding:10px; margin:5px 0; box-sizing:border-box; border:1px solid #ccc; border-radius:6px}}
     button{{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}}
     table{{width:100%; border-collapse:collapse; margin-top:15px}}
     th,td{{padding:8px; border-bottom:1px solid #ddd; text-align:center}}
-    .badge{{padding:8px 16px; border-radius:20px; font-weight:bold; font-size:13px; border:none; cursor:pointer}}
-    .banner{{width:100%; height:auto; max-height:280px; object-fit:contain; border-radius:10px; display:block; background:white}}
+    .badge{{padding:5px 12px; border-radius:20px; font-weight:bold; font-size:13px}}
     </style>
     <div class="box">
-    <!-- FOTO GRANDE NO TOPO - LOGO EUCLIDES PLAY -->
-    <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" class="banner">
-    <p style="text-align:center; font-size:13px; color:#666;">👆 Clique no Status para trocar: Em uso → Devolvido → Manutenção → Em uso</p>
+   <div style="display:flex; align-items:center; justify-content:space-between;">
+<h3 style="text-align:center">EUCLIDES PLAY</h3>
+<img src="/foto" style="width:130px; border-radius:10px;">
+</div>
     <a href="/inventario" style="display:block;text-align:center;background:#111;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">📋 VER INVENTÁRIO DE NOTEBOOKS</a>
     <a href="/unidade1" style="display:block;text-align:center;background:#e11d48;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</a>
+    <a href="/unidade3" style="display:block;text-align:center;background:#2563eb;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 3 - SERIAL DE TODOS OS CHROMES</a>
     <form action="/cadastrar" method="post">
         <select name="unidade" id="unidadeSelect" onchange="atualizarSerial()" required>
             <option value="">Selecione a Unidade</option>
@@ -137,13 +167,20 @@ def index():
         <button style="background:#00aaff;color:white; width:100%; padding:12px; font-weight:bold;">Cadastrar</button>
     </form>
     <script>
-    var opcoesUnidade1 = `<option value="">👇 Clique aqui e escolha o Serial - Unidade 1</option>{opcoes_serial}`;
+    var opcoesUnidade1 = `<option value="">👇 Clique aqui e escolha o Serial - Unidade 1</option>{opcoes1}`;
+    var opcoesUnidade3 = `<option value="">👇 Clique aqui e escolha o Serial - Unidade 3</option>{opcoes3}`;
     function atualizarSerial(){{
         var u = document.getElementById('unidadeSelect').value;
         var s = document.getElementById('chromebookSelect');
-        if(u.includes('Unidade 1')){{ s.innerHTML = opcoesUnidade1; }}
-        else if(u == ''){{ s.innerHTML = '<option value="">👆 Primeiro selecione a Unidade</option>'; }}
-        else {{ s.innerHTML = '<option value="">Nenhum serial cadastrado para esta unidade - Vazio</option>'; }}
+        if(u.includes('Unidade 1')){{
+            s.innerHTML = opcoesUnidade1;
+        }} else if(u.includes('Unidade 3')){{
+            s.innerHTML = opcoesUnidade3;
+        }} else if(u == ''){{
+            s.innerHTML = '<option value="">👆 Primeiro selecione a Unidade</option>';
+        }} else {{
+            s.innerHTML = '<option value="">Nenhum serial cadastrado para esta unidade - Vazio</option>';
+        }}
     }}
     function pintarSelect(){{
         var s = document.getElementById('selectStatus');
@@ -153,7 +190,7 @@ def index():
     }}
     </script>
     <table>
-    <tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook / Serial</th><th>Status - Clique p/ trocar</th><th>Acao</th></tr>
+    <tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook / Serial</th><th>Status</th><th>Acao</th></tr>
     """
     for r in registros:
         estilo = cor_status(r['status'])
@@ -164,8 +201,8 @@ def index():
         <td>{r['nome']}</td>
         <td>{r['turma']}</td>
         <td>{r['chromebook']}</td>
-        <td><form action="/trocar/{r['id']}" method="post" style="display:inline"><button class="badge" style="{estilo}">{r['status']} ↻</button></form></td>
-        <td><form action="/excluir/{r['id']}" method="post" style="display:inline"><button style="background:#ff4444;color:white">Excluir</button></form></td>
+        <td><span class="badge" style="{estilo}">{r['status']}</span></td>
+        <td><form action="/excluir/{r['id']}" method="post" style="display:inline"><button style="background:red;color:white">Excluir</button></form></td>
         </tr>
         """
     html += "</table></div>"
@@ -177,22 +214,6 @@ def cadastrar():
     proximo_id[0] += 1
     return redirect(url_for('index'))
 
-@app.route("/trocar/<int:id>", methods=["POST"])
-def trocar(id):
-    for r in registros:
-        if r['id'] == id:
-            if r['status'] == 'Em uso':
-                r['status'] = 'Devolvido'
-            elif r['status'] == 'Devolvido':
-                r['status'] = 'Manutenção'
-            elif r['status'] == 'Manutenção':
-                r['status'] = 'Em uso'
-            elif r['status'] == 'Não entregou no dia':
-                r['status'] = 'Devolvido'
-            else:
-                r['status'] = 'Em uso'
-    return redirect(url_for('index'))
-
 @app.route("/excluir/<int:id>", methods=["POST"])
 def excluir(id):
     global registros
@@ -201,13 +222,13 @@ def excluir(id):
 
 @app.route('/inventario')
 def inventario():
-    dados = SERIAL_UNIDADE_1
+    dados = SERIAL_UNIDADE_1 + SERIAL_UNIDADE_3
     linhas = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>" for a,b,c in dados])
     return f"""
     <html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Inventário - Euclides Play</title>
     <style>body{{font-family:Arial;background:#0f0f0f;color:#fff;padding:20px}} .box{{background:#1a1a1a;padding:20px;border-radius:12px;max-width:1000px;margin:auto}} input{{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#222;color:#fff}} table{{width:100%;border-collapse:collapse;margin-top:10px}} th,td{{padding:10px;border-bottom:1px solid #333;text-align:left}} th{{background:#e11d48}} a{{color:#fff}}</style></head>
-    <body><div class='box'><a href='/'>← Voltar</a><h1>Inventário - Notebooks - Unidade 1</h1><p>Total Unidade 1: <b id='total'>59</b> | Outras Unidades: Vazio</p><input id='busca' placeholder='Buscar por patrimônio, serial, marca...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
+    <body><div class='box'><a href='/'>← Voltar</a><h1>Inventário - Notebooks</h1><p>Unidade 1: 59 | Unidade 3: 25 | Total: <b id='total'>84</b></p><input id='busca' placeholder='Buscar por patrimônio, serial, marca...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
     <script>const b=document.getElementById('busca'); b.addEventListener('input',()=>{{const q=b.value.toLowerCase(); let n=0; document.querySelectorAll('#tabela tr').forEach(r=>{{const ok=r.innerText.toLowerCase().includes(q); r.style.display=ok?'':'none'; if(ok)n++;}}); document.getElementById('total').textContent=n;}});</script>
     </body></html>
     """
@@ -217,9 +238,21 @@ def unidade1():
     linhas = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>" for a,b,c in SERIAL_UNIDADE_1])
     return f"""
     <html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Unidade 1 - Serial de todos os Chromes</title>
+    <title>Unidade 1</title>
     <style>body{{font-family:Arial;background:#0f0f0f;color:#fff;padding:20px}} .box{{background:#1a1a1a;padding:20px;border-radius:12px;max-width:1000px;margin:auto}} input{{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#222;color:#fff}} table{{width:100%;border-collapse:collapse;margin-top:10px}} th,td{{padding:10px;border-bottom:1px solid #333;text-align:left}} th{{background:#e11d48}} a{{color:#fff}}</style></head>
     <body><div class='box'><a href='/'>← Voltar</a><h1>UNIDADE 1 - SERIAL DE TODOS OS CHROMES</h1><p>Total: <b id='total'>59</b></p><input id='busca' placeholder='Buscar...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
+    <script>const b=document.getElementById('busca'); b.addEventListener('input',()=>{{const q=b.value.toLowerCase(); let n=0; document.querySelectorAll('#tabela tr').forEach(r=>{{const ok=r.innerText.toLowerCase().includes(q); r.style.display=ok?'':'none'; if(ok)n++;}}); document.getElementById('total').textContent=n;}});</script>
+    </body></html>
+    """
+
+@app.route('/unidade3')
+def unidade3():
+    linhas = "".join([f"<tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>" for a,b,c in SERIAL_UNIDADE_3])
+    return f"""
+    <html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Unidade 3</title>
+    <style>body{{font-family:Arial;background:#0f0f0f;color:#fff;padding:20px}} .box{{background:#1a1a1a;padding:20px;border-radius:12px;max-width:1000px;margin:auto}} input{{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#222;color:#fff}} table{{width:100%;border-collapse:collapse;margin-top:10px}} th,td{{padding:10px;border-bottom:1px solid #333;text-align:left}} th{{background:#2563eb}} a{{color:#fff}}</style></head>
+    <body><div class='box'><a href='/'>← Voltar</a><h1>UNIDADE 3 - SERIAL DE TODOS OS CHROMES</h1><p>Total: <b id='total'>25</b></p><input id='busca' placeholder='Buscar...'><div style='overflow-x:auto'><table><thead><tr><th>Patrimônio</th><th>Marca</th><th>Serial</th></tr></thead><tbody id='tabela'>{linhas}</tbody></table></div></div>
     <script>const b=document.getElementById('busca'); b.addEventListener('input',()=>{{const q=b.value.toLowerCase(); let n=0; document.querySelectorAll('#tabela tr').forEach(r=>{{const ok=r.innerText.toLowerCase().includes(q); r.style.display=ok?'':'none'; if(ok)n++;}}); document.getElementById('total').textContent=n;}});</script>
     </body></html>
     """
