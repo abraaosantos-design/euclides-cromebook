@@ -155,13 +155,13 @@ def index():
     <form action="/cadastrar" method="post">
         <select name="unidade" id="unidadeSelect" onchange="atualizarSerial()" required>
             <option value="">Selecione a Unidade</option>
-            <option>Unidade 1 - Vila da Penha</option>
-            <option>Vila da Penha Unidade 3</option>
-            <option>Cachambi Unidade 4</option>
-            <option>Creche Cachambi</option>
-            <option>Vila Isabel Unidade 5</option>
-            <option>Valqueire Unidade 6</option>
-            <option>Valqueire Unidade 7</option>
+            <option>Unidade 1 - Colégio</option>
+            <option>Unidade 2 - Creche Vila da Penha</option>
+            <option>Unidade 3 - Vila da Penha</option>
+            <option>Unidade 4 - Cachambi</option>
+            <option>Unidade 5 - Vila Isabel</option>
+            <option>Unidade 6 - Valqueire</option>
+            <option>Unidade 7 - Valqueire</option>
         </select>
         <input name="nome" placeholder="Nome do aluno" required>
         <input name="turma" placeholder="Turma ex: 901" required>
