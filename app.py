@@ -142,8 +142,7 @@ def index():
     <div class="box">
    <div style="display:flex; align-items:center; justify-content:space-between;">
 <h3 style="text-align:center">EUCLIDES PLAY</h3>
-<img src="/foto?v=2" style="width:130px; border-radius:10px;">
-</div>
+<img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:130px; border-radius:10px;"></div>
     <a href="/inventario" style="display:block;text-align:center;background:#111;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">📋 VER INVENTÁRIO DE NOTEBOOKS</a>
     <a href="/unidade1" style="display:block;text-align:center;background:#e11d48;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</a>
     <a href="/unidade3" style="display:block;text-align:center;background:#2563eb;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 3 - SERIAL DE TODOS OS CHROMES</a>
