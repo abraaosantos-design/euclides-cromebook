@@ -134,8 +134,8 @@ def index():
     <style>
     *{{box-sizing:border-box}}
     html,body{{width:100%; margin:0; padding:0; overflow-x:hidden}}
-    body{{font-family:Arial; background:#f2f2f2; padding:8px}}
-    .box{{background:white; max-width:100%; width:100%; margin:auto; padding:12px; border-radius:10px}}
+    body{{font-family:Arial; background:#f2f2f2; padding:0}}
+    .box{{background:white; max-width:100%; width:100%; margin:0 auto; padding:0 0 12px 0; border-radius:0}}
     input,select{{width:100%; padding:14px; margin:6px 0; border:1px solid #ccc; border-radius:6px; font-size:16px; display:block}}
     button{{padding:8px 14px; border:none; border-radius:6px; cursor:pointer}}
     .tabela-wrap{{overflow-x:auto; width:100%; -webkit-overflow-scrolling:touch}}
@@ -146,9 +146,9 @@ def index():
     </style>
     <div class="box">
     <div style="width:100%; text-align:center; background:white; padding:0; margin:0;">
-        <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; max-width:420px; max-height:170px; object-fit:contain; display:block; margin:0 auto; border-radius:8px;">
+        <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" style="width:100%; max-width:100%; height:170px; object-fit:cover; display:block; margin:0; border-radius:0;">
     </div>
-    <form action="/cadastrar" method="post">
+    <form action="/cadastrar" method="post" style="padding:12px 12px 0 12px;">
         <select name="unidade" id="unidadeSelect" onchange="atualizarSerial()" required>
             <option value="">Selecione a Unidade</option>
             <option>Unidade 1 - Colégio</option>
@@ -195,7 +195,7 @@ def index():
         if(s.value == 'Manutenção'){{ s.style.background='yellow'; s.style.color='black'; }}
     }}
     </script>
-    <div class="tabela-wrap">
+    <div class="tabela-wrap" style="padding:0 12px;">
     <table>
     <tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook / Serial</th><th>Status</th><th>Acao</th></tr>
     """
