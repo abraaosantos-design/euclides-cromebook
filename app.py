@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/foto')
 def foto():
-    return send_file('WhatsApp Image 2026-11-26 at 23.32.52.jpg')
+    return send_file('foto.jpg')
 
 registros = []
 proximo_id = [1]
