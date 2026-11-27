@@ -5,8 +5,7 @@ app = Flask(__name__)
 @app.route('/foto')
 def foto():
     from flask import send_file
-    return send_file('WhatsApp Image 2026-11-26 at 23.32.52.jpg', mimetype='image/jpeg')
-registros = []
+send_file('WhatsApp Image 2026-11-26 at 23.32.52.jpg')registros = []
 proximo_id = [1]
 
 def cor_status(status):
