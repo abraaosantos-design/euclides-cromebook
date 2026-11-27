@@ -39,8 +39,9 @@ def index():
     <form action="/cadastrar" method="post">
         <select name="unidade" required>
             <option value="">Selecione a Unidade</option>
-            <option>Colégio Vila da Penha</option>
+            <option>Colégio </option>
             <option>Creche Vila da Penha</option>
+            <option>Vila da Penha</option>
             <option>Cachambi</option>
             <option>Creche Cachambi</option>
             <option>Vila Isabel</option>
