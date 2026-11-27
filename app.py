@@ -2,6 +2,10 @@ from flask import Flask, request, redirect, url_for, render_template_string
 from datetime import datetime
 
 app = Flask(__name__)
+@app.route('/foto')
+def foto():
+    from flask import send_file
+    return send_file('WhatsApp Image 2026-11-26 at 23.32.52.jpg', mimetype='image/jpeg')
 registros = []
 proximo_id = [1]
 
