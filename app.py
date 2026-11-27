@@ -107,7 +107,7 @@ def index():
     </style>
     <div class="box">
     <!-- FOTO GRANDE NO TOPO - LOGO EUCLIDES PLAY -->
-    <img src="/foto?v=2" class="banner">
+    <img src="https://raw.githubusercontent.com/abraaosantos-design/euclides-cromebook/main/foto.jpg" class="banner">
     <p style="text-align:center; font-size:13px; color:#666;">👆 Clique no Status para trocar: Em uso → Devolvido → Manutenção → Em uso</p>
     <a href="/inventario" style="display:block;text-align:center;background:#111;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">📋 VER INVENTÁRIO DE NOTEBOOKS</a>
     <a href="/unidade1" style="display:block;text-align:center;background:#e11d48;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">🔢 UNIDADE 1 - SERIAL DE TODOS OS CHROMES</a>
