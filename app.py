@@ -46,13 +46,21 @@ def index():
         <input name="nome" placeholder="Nome do aluno" required>
         <input name="turma" placeholder="Turma ex: 901" required>
         <input name="chromebook" placeholder="N do Chromebook ex: CB-01" required>
-        <select name="status">
-            <option>Em uso</option>
-            <option>Devolvido</option>
-            <option>Manutenção</option>
+        <select name="status" id="selectStatus" onchange="pintarSelect()" style="background:red; color:white; font-weight:bold;">
+            <option style="background:red; color:white;">Em uso</option>
+            <option style="background:green; color:white;">Devolvido</option>
+            <option style="background:yellow; color:black;">Manutenção</option>
         </select>
         <button style="background:#00aaff;color:white">Cadastrar</button>
     </form>
+    <script>
+    function pintarSelect(){
+        var s = document.getElementById('selectStatus');
+        if(s.value == 'Em uso'){ s.style.background='red'; s.style.color='white'; }
+        if(s.value == 'Devolvido'){ s.style.background='green'; s.style.color='white'; }
+        if(s.value == 'Manutenção'){ s.style.background='yellow'; s.style.color='black'; }
+    }
+    </script>
     <table>
     <tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook</th><th>Status</th><th>Acao</th></tr>
     """
@@ -97,5 +105,3 @@ def excluir(id):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
-
-
