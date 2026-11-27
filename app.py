@@ -46,6 +46,7 @@ def index():
 <h3 style="text-align:center">EUCLIDES PLAY</h3>
 <img src="/foto" style="width:130px; border-radius:10px;">
 </div>
+    <a href="/inventario" style="display:block;text-align:center;background:#111;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin:10px 0;">📋 VER INVENTÁRIO DE NOTEBOOKS</a>
     <form action="/cadastrar" method="post">
         <select name="unidade" required>
             <option value="">Selecione a Unidade</option>
