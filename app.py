@@ -1,30 +1,104 @@
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, url_for, render_template_string
+from datetime import datetime
+
 app = Flask(__name__)
+
 chromebooks = []
-proximo_id = 1
-HTML = """<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8"><title><title>EUCLIDES PLAY</title>
-<style>body{font-family:Arial;background:#f0f2f5;padding:20px}.card{background:white;padding:20px;border-radius:10px;max-width:900px;margin:auto}input,select{padding:8px;margin:5px;width:95%}button{background:#1a73e8;color:white;border:none;padding:10px 20px;border-radius:5px}table{width:100%;border-collapse:collapse;margin-top:15px}th,td{border:1px solid #ddd;padding:8px}</style></head>
-<body><div class="card"<h2>EUCLIDES PLAY</h2>
-<form method="POST" action="/adicionar">
-<select name="unidade" required><option value="">Selecione a Unidade</option><option>Colegio</option><option>Creche Vila Da Penha</option><option>Vila da Penha</option><option>Cachambi</option><option>Creche Cachambi</option><option>Vila Valqueire</option><option>Vila Valqueire 2</option><option>Vila Isabel</option></select>
-<input name="nome" placeholder="Nome do aluno" required><input name="turma" placeholder="Turma ex: 901" required><input name="numero" placeholder="N do Chromebook ex: CB-01" required><select name="status"><option>Em uso</option><option>Devolvido</option><option>Manutencao</option></select><br><button type="submit">Cadastrar</button></form>
-<table><tr><th>ID</th><th>Unidade</th><th>Aluno</th><th>Turma</th><th>Chromebook</th><th>Status</th><th>Acao</th></tr>"""
+for i in range(1, 31):
+    chromebooks.append({"numero": i, "nome": "", "turma": "", "status": "Devolvido"})
+
+# CORES DOS STATUS - DO JEITO QUE VOCÊ PEDIU
+def cor_status(status):
+    if status == "Em uso":
+        return "background:red; color:white;"
+    if status == "Devolvido":
+        return "background:green; color:white;"
+    if status == "Manutenção":
+        return "background:yellow; color:black;"
+    if status == "Não entregou no dia":
+        return "background:purple; color:white;"
+    return "background:gray; color:white;"
+
 @app.route("/")
 def index():
-    linhas = ""
+    # REGRA DAS 17H - SE AINDA ESTÁ EM USO VIRA ROXO
+    hora_atual = datetime.now().hour
     for c in chromebooks:
-        linhas += f"<tr><td>{c['id']}</td><td>{c['unidade']}</td><td>{c['nome']}</td><td>{c['turma']}</td><td>{c['numero']}</td><td>{c['status']}</td><td><a href='/excluir/{c['id']}'>Excluir</a></td></tr>"
-    return HTML + linhas + "</table></div></body></html>"
-@app.route("/adicionar", methods=["POST"])
-def adicionar():
-    global proximo_id
-    chromebooks.append({"id": proximo_id, "unidade": request.form["unidade"], "nome": request.form["nome"], "turma": request.form["turma"], "numero": request.form["numero"], "status": request.form["status"]})
-    proximo_id += 1
-    return redirect("/")
-@app.route("/excluir/<int:id>")
-def excluir(id):
-    global chromebooks
-    chromebooks = [c for c in chromebooks if c["id"] != id]
-    return redirect("/")
+        if c['status'] == 'Em uso' and hora_atual >= 17:
+            c['status'] = 'Não entregou no dia'
+
+    html = """
+    <style>
+    body{font-family:Arial; background:#f2f2f2; padding:20px}
+    h1{text-align:center}
+    table{width:100%; background:white; border-collapse:collapse}
+    th,td{padding:10px; border-bottom:1px solid #ddd; text-align:center}
+    .badge{padding:5px 12px; border-radius:20px; font-weight:bold; font-size:13px}
+    button{padding:6px 10px; border:none; border-radius:6px; cursor:pointer; margin:2px}
+    input{padding:6px; margin:2px}
+    </style>
+    <h1>Escola Euclides da Cunha - Chromebooks</h1>
+    <table>
+    <tr><th>Número</th><th>Aluno</th><th>Turma</th><th>Status</th><th>Ação</th></tr>
+    """
+    for c in chromebooks:
+        estilo = cor_status(c['status'])
+        html += f"""
+        <tr>
+        <td>{c['numero']}</td>
+        <td>{c['nome']}</td>
+        <td>{c['turma']}</td>
+        <td><span class="badge" style="{estilo}">{c['status']}</span></td>
+        <td>
+            <form action="/saida/{c['numero']}" method="post" style="display:inline">
+                <input name="nome" placeholder="Nome" required>
+                <input name="turma" placeholder="Turma" required>
+                <button style="background:#2563eb;color:white">Registrar Saída</button>
+            </form>
+            <form action="/devolver/{c['numero']}" method="post" style="display:inline">
+                <button style="background:green;color:white">Devolver</button>
+            </form>
+            <form action="/manutencao/{c['numero']}" method="post" style="display:inline">
+                <button style="background:#facc15">Manutenção</button>
+            </form>
+        </td>
+        </tr>
+        """
+    html += "</table>"
+    return render_template_string(html)
+
+@app.route("/saida/<int:numero>", methods=["POST"])
+def saida(numero):
+    for c in chromebooks:
+        if c['numero'] == numero:
+            c['nome'] = request.form['nome']
+            c['turma'] = request.form['turma']
+            c['status'] = 'Em uso'
+    return redirect(url_for('index'))
+
+@app.route("/devolver/<int:numero>", methods=["POST"])
+def devolver(numero):
+    for c in chromebooks:
+        if c['numero'] == numero:
+            c['nome'] = ""
+            c['turma'] = ""
+            c['status'] = 'Devolvido'
+    return redirect(url_for('index'))
+
+@app.route("/manutencao/<int:numero>", methods=["POST"])
+def manutencao(numero):
+    for c in chromebooks:
+        if c['numero'] == numero:
+            c['status'] = 'Manutenção'
+    return redirect(url_for('index'))
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=10000)
+
+
+🔴 Em uso = Vermelho
+🟢 Devolvido = Verde
+🟡 Manutenção = Amarelo
+🟣 Depois das 17h e não devolveu = Roxo
+
+
