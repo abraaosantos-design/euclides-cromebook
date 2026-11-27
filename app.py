@@ -2,9 +2,9 @@ from flask import Flask, request, redirect
 app = Flask(__name__)
 chromebooks = []
 proximo_id = 1
-HTML = """<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8"><title>Controle de Chromebooks</title>
+HTML = """<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8"><title><title>EUCLIDES PLAY</title>
 <style>body{font-family:Arial;background:#f0f2f5;padding:20px}.card{background:white;padding:20px;border-radius:10px;max-width:900px;margin:auto}input,select{padding:8px;margin:5px;width:95%}button{background:#1a73e8;color:white;border:none;padding:10px 20px;border-radius:5px}table{width:100%;border-collapse:collapse;margin-top:15px}th,td{border:1px solid #ddd;padding:8px}</style></head>
-<body><div class="card"><h2>Controle de Chromebooks</h2>
+<body><div class="card"<h2>EUCLIDES PLAY</h2>
 <form method="POST" action="/adicionar">
 <select name="unidade" required><option value="">Selecione a Unidade</option><option>Colegio</option><option>Creche Vila Da Penha</option><option>Vila da Penha</option><option>Cachambi</option><option>Creche Cachambi</option><option>Vila Valqueire</option><option>Vila Valqueire 2</option><option>Vila Isabel</option></select>
 <input name="nome" placeholder="Nome do aluno" required><input name="turma" placeholder="Turma ex: 901" required><input name="numero" placeholder="N do Chromebook ex: CB-01" required><select name="status"><option>Em uso</option><option>Devolvido</option><option>Manutencao</option></select><br><button type="submit">Cadastrar</button></form>
